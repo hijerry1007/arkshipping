@@ -7,8 +7,13 @@ a {
 }
 
 .nav-box {
-  position:absolute;
-  right: 0px;
+  position: relative;
+  top: 10px;
+  right: 30px;
+}
+
+#navbarColor03 ul li a.active{
+  color: #c61010;
 }
 
 .row-up{
@@ -18,4 +23,63 @@ a {
 }
 .navbar{
   background-color: #e6ebef;
+  border-bottom: 3px solid #ff9b00;
 }
+
+.footer-data:before {
+  content: '';
+  width: 3px;
+    height: 50px;
+  margin-right: 5px;
+    background-color: #ff9b00;
+    float: left;
+} 
+
+.copyright {
+  float: right;
+  color: #898989;
+  position: relative;
+  top: -5px;
+  left: 70%;
+}
+
+
+hr {
+    border-top: 1px solid gray;
+}
+
+.info-data{
+  position: relative;
+  text-align: center;
+  width: 230px;
+  height: 390px;
+  background-color: #eaf5ff;
+  border: solid 1px #dfe3e5;
+}
+
+.info-title {
+  color: #ff9b00;
+  font-size: 20px;
+  line-height: 40px;
+  font-weight: 300;
+}
+
+.info-img{
+  border: solid 1px #dfe3e5;
+}
+.info-btn {
+  width: 80%;
+  position: absolute;
+  bottom: 25px;
+  right: 25px; 
+  font-family: 'Noto Sans', 'Noto Sans JP', 'Noto Sans KR', 'Noto Sans SC', 'Noto Sans TC', sans-serif;
+}
+
+.info-content{
+  font-size: 16px;
+  line-height: 24px;
+}
+
+
+
+
