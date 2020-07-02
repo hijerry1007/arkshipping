@@ -80,6 +80,63 @@ hr {
   line-height: 24px;
 }
 
+.intro-box{
+  display: flex;
+  flex-flow: row;
+  margin-left: -14px;
+  max-width: 100%;
+}
+
+.intro-nav a { 
+  width: 255px;
+  text-decoration: none;
+  color: black; 
+}
+
+.intro-nav a.active{
+  background-color: #ff9b00;
+  color: white;
+}
+
+.intro-nav{
+  display: flex;
+  flex-flow: column;
+  background-color: #dfe3e5b7;
+  width: 255px;
+  min-height: 500px;
+  padding: 0px;
+  text-align: center;
+}
+
+.intro-bg h4{
+  color: #ff9b00;
+}
+
+.intro-bf h4{
+  color: #ff9b00;
+}
+
+.intro-content {
+  border-top: 3px solid #ff9b00 ;
+  background-color: rgb(238, 246, 248);
+  padding: 25px;
+}
+
+.intro-content h6:before {
+ content: url(http://www.arkshipping.com.tw/image/listTag.jpg);
+ margin-right: 10px;
+}
+
+.intro-content h6{
+  margin-top: 15px;
+  margin-bottom: 15px;
+  line-height: 30px;
+  font-weight: 300;
+}
+
+
+
+
 
 
 
