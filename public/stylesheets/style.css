@@ -134,6 +134,20 @@ hr {
   font-weight: 300;
 }
 
+.intro-content p {
+  line-height: 30px;
+}
+
+.service-content {
+  max-width: 500px;
+  display: flex;
+  flex-flow: row;
+  justify-content: space-evenly;
+  position: relative;
+  top: -15px;
+  margin-bottom: 0px;
+}
+
 
 
 

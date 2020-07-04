@@ -8,7 +8,10 @@ router.get('/', function (req, res, next) {
 
 router.get('/introduction', function (req, res, next) {
   res.render('introduction');
+})
 
+router.get('/services', function (req, res, next) {
+  res.render('services');
 })
 
 module.exports = router;
