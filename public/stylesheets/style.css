@@ -36,7 +36,9 @@ a {
     float: left;
 } 
 
-
+.footer{
+  background-color: #e6ebef;
+}
 
 .copyright {
   float: right;
@@ -58,6 +60,7 @@ hr {
   height: 390px;
   background-color: #eaf5ff;
   border: solid 1px #dfe3e5;
+  padding-top: 10px;
 }
 
 .info-title {
@@ -68,7 +71,7 @@ hr {
 }
 
 .info-img{
-  border: solid 1px #dfe3e5;
+  border: solid 1px #afb2b4;
 }
 .info-btn {
   width: 80%;
@@ -104,7 +107,7 @@ hr {
 .intro-nav{
   display: flex;
   flex-flow: column;
-  background-color: #dfe3e5b7;
+  background-color: #f1efefb7;
   width: 255px;
   min-height: 500px;
   padding: 0px;
