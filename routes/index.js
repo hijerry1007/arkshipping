@@ -18,4 +18,8 @@ router.get('/market', function (req, res, next) {
   res.render('market');
 })
 
+router.get('/team', function (req, res, next) {
+  res.render('team');
+})
+
 module.exports = router;

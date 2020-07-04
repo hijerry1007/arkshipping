@@ -36,6 +36,8 @@ a {
     float: left;
 } 
 
+
+
 .copyright {
   float: right;
   color: #898989;
@@ -196,6 +198,48 @@ ol, ul {
     height: 40px;
 }
 
+.teamMemberBox{
+  border-top: 3px solid #ff9b00 ;
+  background-color: rgb(238, 246, 248);
+  padding: 25px 60px;
+  display: flex;
+  flex-flow: row wrap;
+  width: 850px;
+}
 
+.memberBox{
+  display: flex;
+  flex-direction: column;
+  width: 360px;
+  margin-bottom: 30px;
+}
+
+.memberData::before{
+  content: "";
+  width: 3px;
+  height: 80px;
+  margin-right: 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  float: left;
+  background-color: #ff9b00;
+}
+
+.memberName{
+  font-size: 17px;
+  font-weight: bold;
+  float: left;
+}
+.memberOffice::before {
+    content: "Office：";
+}
+
+.memberMob::before {
+    content: "Mobile：";
+}
+
+.memberEmail::before {
+    content: "E-mail：";
+}
 
 
