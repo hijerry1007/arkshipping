@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const db = require('../models')
-
+const Vessel = db.Vessel
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
@@ -25,7 +25,11 @@ router.get('/team', function (req, res, next) {
 })
 
 router.get('/positionlist', function (req, res, next) {
-  res.render('positionList');
+
+  return Vessel.findAll().then((vessels) => {
+    console.log(vessels)
+    res.render('positionList', { vessels });
+  })
 })
 
 router.get('/vessels/:imo', function (req, res, next) {

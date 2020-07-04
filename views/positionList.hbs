@@ -19,25 +19,27 @@
       </tr>
     </thead>
     <tbody>
-      <tr class="table-info" onclick="window.location='/vessels/123456';">
+      {{#each vessels}}
+      <tr class="table-info" onclick="window.location='/vessels/{{{this.IMONumber}}}';">
         <th scope="row">
-          Bien Dong Navigator
+          {{{this.name}}}
         </th>
-        <td>2004</td>
-        <td>CV Neptune 1500</td>
-        <td>1,028</td>
-        <td>711</td>
-        <td>1028</td>
-        <td>13,479</td>
-        <td>8.3</td>
-        <td>Yes</td>
-        <td>150.7</td>
-        <td>22.9</td>
-        <td>19.25/41</td>
-        <td>EX DD Ho Chi Ming</td>
-        <td>7/25-28</td>
+        <td>{{{this.blt}}}</td>
+        <td>{{{this.type}}}</td>
+        <td>{{{this.teu}}}</td>
+        <td>{{{this.homo}}}</td>
+        <td>{{{this.reefer}}}</td>
+        <td>{{{this.dwt}}}</td>
+        <td>{{{this.draft}}}</td>
+        <td>{{{this.gear}}}</td>
+        <td>{{{this.loa}}}</td>
+        <td>{{{this.beam}}}</td>
+        <td>{{{this.spdcon}}}</td>
+        <td>{{{this.place}}}</td>
+        <td>{{{this.opendate}}}</td>
         </a>
       </tr>
+      {{/each}}
     </tbody>
   </table>
 </div>
