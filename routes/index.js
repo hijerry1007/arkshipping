@@ -22,4 +22,14 @@ router.get('/team', function (req, res, next) {
   res.render('team');
 })
 
+router.get('/positionlist', function (req, res, next) {
+  res.render('positionList');
+})
+
+router.get('/vessels/:imo', function (req, res, next) {
+  const imo = req.params.imo
+  res.render('vessel', { imo: imo });
+})
+
+
 module.exports = router;

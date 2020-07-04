@@ -246,3 +246,72 @@ ol, ul {
 }
 
 
+.positionList-table {
+  display: table;
+}
+
+.positionList-thead{
+  display: table-header-group;
+}
+
+.positionList-tbody {
+  display: table-row-group;
+}
+
+.positionList-tr{
+  display: table-row;   
+}
+
+.positionList-td .positionList-th{
+  display: table-cell;
+}
+
+$grid-gutter-width: 30px;
+
+
+.position-list {
+  overflow-x: auto;
+  margin-right: $grid-gutter-width / 2;
+  margin-left: $grid-gutter-width / 2;
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.table {
+  margin-top: 50px;
+  table-layout: fixed;
+  min-width: 1440px;
+}
+
+thead th:first-child,
+tbody tr:first-child {
+    width: 12em;
+}
+
+/* type */
+thead th:nth-child(3),
+tbody td:nth-child(3) {
+  width: 10em;
+}
+
+/* spd/con */
+thead th:nth-child(12),
+tbody td:nth-child(12) {
+  width: 6em;
+}
+/* place */
+thead th:nth-child(13),
+tbody td:nth-child(13) {
+  width: 11em;
+}
+
+/* opendate */
+thead th:nth-child(14),
+tbody td:nth-child(14) {
+  width: 11em;
+}
+
+.table thead tr th{
+  border: 1px solid;
+}
+
