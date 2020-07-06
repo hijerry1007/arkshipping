@@ -27,7 +27,6 @@ router.get('/team', function (req, res, next) {
 router.get('/positionlist', function (req, res, next) {
 
   return Vessel.findAll().then((vessels) => {
-    console.log(vessels)
     res.render('positionList', { vessels });
   })
 })

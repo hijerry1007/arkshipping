@@ -1,6 +1,6 @@
 <div class="container form-group mt-5">
   {{!-- {{> messages}} --}}
-  <form action="/postVessel" method="POST">
+  <form action="/admin/postVessel" method="POST">
     {{!-- title --}}
     <div class="row mb-5">
       <div class="col-2">
@@ -25,7 +25,8 @@
         </label>
       </div>
       <div class="col-6">
-        <input class="form-control" type="text" placeholder="IMONumber" name="IMONumber" value="{{{IMONumber}}}">
+        <input class="form-control" type="text" placeholder="IMONumber" name="IMONumber" value="{{{IMONumber}}}"
+          required="required">
       </div>
     </div>
     <div class="row mb-2">
@@ -34,25 +35,25 @@
         </label>
       </div>
       <div class="col-6">
-        <input class="form-control" type="text" placeholder="BLT" name="BLT" value="{{{BLT}}}">
+        <input class="form-control" type="text" placeholder="BLT" name="blt" value="{{{blt}}}">
       </div>
     </div>
     <div class="row mb-2">
       <div class="col-2">
-        <label class="col-form-label col-form-label-lg" for="Type">Type:
+        <label class="col-form-label col-form-label-lg" for="type">Type:
         </label>
       </div>
       <div class="col-6">
-        <input class="form-control" type="text" placeholder="Type" name="Type" value="{{{Type}}}">
+        <input class="form-control" type="text" placeholder="Type" name="type" value="{{{type}}}">
       </div>
     </div>
     <div class="row mb-2">
       <div class="col-2">
-        <label class="col-form-label col-form-label-lg" for="Teu">Teu:
+        <label class="col-form-label col-form-label-lg" for="teu">Teu:
         </label>
       </div>
       <div class="col-6">
-        <input class="form-control" type="text" placeholder="Teu" name="Teu" value="{{{Teu}}}">
+        <input class="form-control" type="text" placeholder="Teu" name="teu" value="{{{teu}}}">
       </div>
     </div>
     <div class="row mb-2">
