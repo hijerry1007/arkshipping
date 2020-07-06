@@ -4,7 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const db = require('./models') // 引入資料庫
-
+const flash = require('connect-flash')
 
 var indexRouter = require('./routes/index');
 var adminRouter = require('./routes/admin');
