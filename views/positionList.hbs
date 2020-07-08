@@ -42,4 +42,23 @@
       {{/each}}
     </tbody>
   </table>
+
+  <div>
+    <ul class="pagination">
+      <li class="page-item">
+        <a class="page-link" href="/positionList?page={{prev}}" aria-label="Previous">&laquo;</a>
+      </li>
+      {{#each totalPage}}
+      {{#ifCond this ../page}}
+      <li class="page-item active"><a class="page-link" href="#">{{this}}</a></li>
+      {{else}}
+      <li class="page-item"><a class="page-link" href="/positionList?page={{this}}">{{this}}</a>
+      </li>
+      {{/ifCond}}
+      {{/each}}
+      <li class="page-item">
+        <a class="page-link" href="/positionList?page={{next}}" aria-label="Next">&raquo;</a>
+      </li>
+    </ul>
+  </div>
 </div>

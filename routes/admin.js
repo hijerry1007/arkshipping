@@ -34,7 +34,6 @@ router.post('/postVessel', function (req, res, next) {
         place: req.body.place,
         opendate: req.body.opendate
       }).then(vessel => {
-        console.log(req.body)
         res.redirect('/positionList')
       })
     }

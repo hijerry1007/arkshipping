@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 const db = require('../models')
 const Vessel = db.Vessel
+const pageLimit = 10
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
@@ -25,9 +26,31 @@ router.get('/team', function (req, res, next) {
 })
 
 router.get('/positionlist', function (req, res, next) {
+  let offset = 0;
+  if (req.query.page) {
+    offset = (req.query.page - 1) * pageLimit
+  }
+  return Vessel.findAndCountAll({
+    offset: offset, limit: pageLimit, order: [['teu', 'ASC']]
+  }).then(results => {
+    let page = Number(req.query.page) || 1;
+    let pages = Math.ceil(results.count / pageLimit);
+    let totalPage = Array.from({ length: pages }).map((item, index) => index + 1);
+    let prev = page - 1 < 1 ? 1 : page - 1;
+    let next = page + 1 > pages ? pages : page + 1;
 
-  return Vessel.findAll().then((vessels) => {
-    res.render('positionList', { vessels });
+    const vessels = results.rows.map(r => ({
+      ...r.dataValues,
+    }))
+
+
+    res.render('positionList', {
+      vessels: vessels,
+      page: page,
+      totalPage: totalPage,
+      prev: prev,
+      next: next
+    });
   })
 })
 

@@ -4,6 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const flash = require('connect-flash')
+var hbs = require('hbs')
 
 var indexRouter = require('./routes/index');
 var adminRouter = require('./routes/admin');
@@ -38,5 +39,12 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+hbs.registerHelper('ifCond', function (a, b, options) {
+  if (a === b) {
+    return options.fn(this)
+  }
+  return options.inverse(this)
+})
 
 module.exports = app;
