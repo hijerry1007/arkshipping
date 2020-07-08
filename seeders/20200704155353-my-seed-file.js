@@ -1,4 +1,5 @@
 'use strict';
+const vesselData = require('../public/data/vesselData.json')
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
@@ -11,25 +12,15 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-    return queryInterface.bulkInsert('Vessels', [{
-      name: 'Bien Dong Navigator',
-      IMONumber: '9279226',
-      blt: '2004',
-      type: 'CV Neptune 1500',
-      teu: '1,028',
-      homo: '711',
-      reefer: '200',
-      dwt: '13,479',
-      draft: '8.3',
-      gear: 'Yes',
-      loa: '150.7',
-      beam: '22.9',
-      spdcon: '19.25/41',
-      place: 'EX DD Ho Chi Ming',
-      opendate: '7/25-28',
-      createdAt: new Date(),
-      updatedAt: new Date()
-    }], {})
+    let seederData = []
+    for (let i = 0; i < vesselData.data.length; i++) {
+      vesselData.data[i].createdAt = new Date()
+      vesselData.data[i].updatedAt = new Date()
+      seederData.push(vesselData.data[i])
+    }
+
+
+    return queryInterface.bulkInsert('Vessels', seederData, {})
   },
 
   down: async (queryInterface, Sequelize) => {
