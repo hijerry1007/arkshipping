@@ -1,3 +1,23 @@
+<div class="container mt-5">
+  <div class="row" id="search-bar">
+    <div class="col-8">
+      <form action="/positionlist">
+        <div class="input-group mb-3">
+          <input type="text" name="keyword" class="form-control" placeholder="Enter vessel name to search..."
+            aria-label="Vessel Name..." aria-describedby="search-button">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="submit" id="search-button">Search</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="col-2">
+      <button type="button" class="btn btn-outline-secondary" onclick="history.back()">back</button>
+    </div>
+  </div>
+</div>
+
+
 <div class="col position-list">
   <table class="table table-hover table-bordered">
     <thead>
@@ -43,7 +63,7 @@
     </tbody>
   </table>
 
-  <div>
+  <div class="container ">
     <ul class="pagination">
       <li class="page-item">
         <a class="page-link" href="/positionList?page={{prev}}" aria-label="Previous">&laquo;</a>
