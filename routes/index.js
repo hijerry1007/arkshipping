@@ -86,7 +86,11 @@ router.get('/positionlist', function (req, res, next) {
 
 router.get('/vessels/:imo', function (req, res, next) {
   const imo = req.params.imo
-  res.render('vessel', { imo: imo });
+
+  Vessel.findOne({ where: { IMONumber: imo } }).then(vessel => {
+    res.render('vessel', { vessel });
+
+  })
 })
 
 

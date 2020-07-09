@@ -1,56 +1,60 @@
-<div class="vessel-nav-box">
-  <a class="btn btn-primary mt-3" href="#">編輯position</a>
-  <a class="btn btn-primary mt-3" href="#">編輯Fixture</a>
+<div class="vesselData">
+  <div class="vessel-nav-box">
+    <a class="btn btn-primary mt-3" href="/admin/edit/{{{vessel.IMONumber}}}">編輯position</a>
+    <a class="btn btn-primary mt-3" href="/admin/post/fixtures/{{{vessel.IMONumber}}}">新增Fixture</a>
+    <a class="btn btn-primary mt-3" href="/admin/edit/fixtures/{{{vessel.IMONumber}}}">編輯Fixture</a>
+  </div>
+  <div class="vessel-box container mt-3">
+    <div class="row">
+      <div class="col-3">
+        <h5>Vessel: {{vessel.name}}</h5>
+      </div>
+      <div class="col-3">
+        <h5>Type: {{vessel.type}}</h5>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-3">
+        <h5>History Charterer</h5>
+      </div>
+      <div class="col-6">
+        <div id="charterPeriod"></div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-3">
+        <h5>Latest Fixture: </h5>
+      </div>
+      <div class="col-9">
+        <h5>YML ext 3-6mos USD: 6500</h5>
+      </div>
+
+    </div>
+
+    <div class="row">
+      <div class="col-3">
+        <h5>Current Position:</h5>
+      </div>
+
+      <div class="col-9">
+        <script type="text/javascript">
+          // Map appearance
+          var width = "83%";         // width in pixels or percentage
+          var height = "300";        // height in pixels
+          var names = true;           // always show ship names (defaults to false)
+
+          // Single ship tracking
+          var imo = {{{ vessel.IMONumber }}};        // display latest position (by IMO, overrides MMSI)
+          var show_track = true;      // display track line (last 24 hours)
+        </script>
+        <script type="text/javascript" src="https://www.vesselfinder.com/aismap.js"></script>
+      </div>
+    </div>
+  </div>
 </div>
 
-<div class="vessel-box container mt-3">
-  <div class="row">
-    <div class="col-3">
-      <h5>Vessel: YM Busan</h5>
-    </div>
-    <div class="col-3">
-      <h5>Type: Samsung 4400</h5>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-3">
-      <h5>History Charterer</h5>
-    </div>
-    <div class="col-6">
-      <div id="charterPeriod"></div>
-    </div>
-  </div>
 
-  <div class="row">
-    <div class="col-3">
-      <h5>Latest Fixture: </h5>
-    </div>
-    <div class="col-9">
-      <h5>YML ext 3-6mos USD: 6500</h5>
-    </div>
-
-  </div>
-
-  <div class="row">
-    <div class="col-3">
-      <h5>Current Position:</h5>
-    </div>
-
-    <div class="col-9">
-      <script type="text/javascript">
-        // Map appearance
-        var width = "83%";         // width in pixels or percentage
-        var height = "300";        // height in pixels
-        var names = true;           // always show ship names (defaults to false)
-
-        // Single ship tracking
-        var imo = {{ imo }};        // display latest position (by IMO, overrides MMSI)
-        var show_track = true;      // display track line (last 24 hours)
-      </script>
-      <script type="text/javascript" src="https://www.vesselfinder.com/aismap.js"></script>
-    </div>
-  </div>
-</div>
 
 
 

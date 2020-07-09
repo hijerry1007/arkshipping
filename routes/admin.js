@@ -41,4 +41,19 @@ router.post('/postVessel', function (req, res, next) {
   })
 });
 
+router.get('/edit/:IMONumber', function (req, res, next) {
+  const IMONumber = req.params.IMONumber
+  res.render('editVessel', { IMONumber });
+})
+
+router.get('/post/fixtures/:IMONumber', function (req, res, next) {
+  const IMONumber = req.params.IMONumber
+  res.render('addFixtures', { IMONumber });
+})
+
+router.get('/edit/fixtures/:IMONumber', function (req, res, next) {
+  const IMONumber = req.params.IMONumber
+  res.render('editFixtures', { IMONumber });
+})
+
 module.exports = router;
