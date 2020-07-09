@@ -40,9 +40,9 @@
     </thead>
     <tbody>
       {{#each vessels}}
-      <tr class="table-info" onclick="window.location='/vessels/{{{this.IMONumber}}}';">
+      <tr class="table-info">
         <th scope="row">
-          {{{this.name}}}
+          <a href="/vessels/{{{this.IMONumber}}}">{{{this.name}}}</a>
         </th>
         <td>{{{this.blt}}}</td>
         <td>{{{this.type}}}</td>
@@ -63,6 +63,7 @@
     </tbody>
   </table>
 
+  {{#if totoPage}}
   <div class="container ">
     <ul class="pagination">
       <li class="page-item">
@@ -82,3 +83,4 @@
     </ul>
   </div>
 </div>
+{{/if}}
