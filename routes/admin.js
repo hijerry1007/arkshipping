@@ -56,4 +56,9 @@ router.get('/edit/fixtures/:IMONumber', function (req, res, next) {
   res.render('editFixtures', { IMONumber });
 })
 
+router.get('/post/charterer', function (req, res, next) {
+  const charterer = 'YML'
+  res.render('postCharterer', { charterer });
+})
+
 module.exports = router;

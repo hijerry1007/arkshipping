@@ -326,10 +326,7 @@ tbody td:nth-child(14) {
 .vessel-nav-box{
   display: flex;
   flex-direction: column;
-  float: left;
-  position: relative;
-  left: 100px;
-  top: 50px;
+  margin: 0 auto;
 }
 
 .vessel-box .row +.row {
