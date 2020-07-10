@@ -1,0 +1,166 @@
+<div class="container form-group mt-5">
+  {{!-- {{> messages}} --}}
+  <form action="/admin/edit/positionlist/{{vessel.id}}" method="POST">
+    {{!-- title --}}
+    <div class="row mb-5">
+      <div class="col-2">
+        <p>*為必填欄位</p>
+      </div>
+      <div class="col-6">
+        <h3>編輯 Poistion</h3>
+      </div>
+    </div>
+    <div class="row mb-2">
+      <div class="col-2">
+        <label class="col-form-label col-form-label-lg" for="name">名稱:
+        </label>
+      </div>
+      <div class="col-6">
+        <input class="form-control" type="text" placeholder="name" name="name" value="{{{vessel.name}}}">
+      </div>
+    </div>
+    <div class="row mb-2">
+      <div class="col-2">
+        <label class="col-form-label col-form-label-lg" for="IMONumber">IMONumber*:
+        </label>
+      </div>
+      <div class="col-6">
+        <input class="form-control" type="text" placeholder="IMONumber" name="IMONumber" value="{{{vessel.IMONumber}}}"
+          required="required">
+      </div>
+    </div>
+    <div class="row mb-2">
+      <div class="col-2">
+        <label class="col-form-label col-form-label-lg" for="BLT">BLT:
+        </label>
+      </div>
+      <div class="col-6">
+        <input class="form-control" type="text" placeholder="BLT" name="blt" value="{{{vessel.blt}}}">
+      </div>
+    </div>
+    <div class="row mb-2">
+      <div class="col-2">
+        <label class="col-form-label col-form-label-lg" for="type">Type:
+        </label>
+      </div>
+      <div class="col-6">
+        <input class="form-control" type="text" placeholder="Type" name="type" value="{{{vessel.type}}}">
+      </div>
+    </div>
+    <div class="row mb-2">
+      <div class="col-2">
+        <label class="col-form-label col-form-label-lg" for="teu">Teu:
+        </label>
+      </div>
+      <div class="col-6">
+        <input class="form-control" type="text" placeholder="Teu" name="teu" value="{{{vessel.teu}}}">
+      </div>
+    </div>
+    <div class="row mb-2">
+      <div class="col-2">
+        <label class="col-form-label col-form-label-lg" for="homo">@14T:
+        </label>
+      </div>
+      <div class="col-6">
+        <input class="form-control" type="text" placeholder="homo" name="homo" value="{{{vessel.homo}}}">
+      </div>
+    </div>
+    <div class="row mb-2">
+      <div class="col-2">
+        <label class="col-form-label col-form-label-lg" for="reefer">reefer:
+        </label>
+      </div>
+      <div class="col-6">
+        <input class="form-control" type="text" placeholder="reefer" name="reefer" value="{{{vessel.reefer}}}">
+      </div>
+    </div>
+    <div class="row mb-2">
+      <div class="col-2">
+        <label class="col-form-label col-form-label-lg" for="dwt">Dwt:
+        </label>
+      </div>
+      <div class="col-6">
+        <input class="form-control" type="text" placeholder="dwt" name="dwt" value="{{{vessel.dwt}}}">
+      </div>
+    </div>
+    <div class="row mb-2">
+      <div class="col-2">
+        <label class="col-form-label col-form-label-lg" for="draft">draft:
+        </label>
+      </div>
+      <div class="col-6">
+        <input class="form-control" type="text" placeholder="draft" name="draft" value="{{{vessel.draft}}}">
+      </div>
+    </div>
+    <div class="row mb-2">
+      <div class="col-2">
+        <label class="col-form-label col-form-label-lg" for="gear">Gear:
+        </label>
+      </div>
+      <div class="col-6">
+        <input class="form-control" type="text" placeholder="gear" name="gear" value="{{{vessel.gear}}}">
+      </div>
+    </div>
+    <div class="row mb-2">
+      <div class="col-2">
+        <label class="col-form-label col-form-label-lg" for="loa">LOA:
+        </label>
+      </div>
+      <div class="col-6">
+        <input class="form-control" type="text" placeholder="LOA" name="loa" value="{{{vessel.loa}}}">
+      </div>
+    </div>
+    <div class="row mb-2">
+      <div class="col-2">
+        <label class="col-form-label col-form-label-lg" for="beam">Beam:
+        </label>
+      </div>
+      <div class="col-6">
+        <input class="form-control" type="text" placeholder="Beam" name="beam" value="{{{vessel.beam}}}">
+      </div>
+    </div>
+    <div class="row mb-2">
+      <div class="col-2">
+        <label class="col-form-label col-form-label-lg" for="spdcon">Spd/Con:
+        </label>
+      </div>
+      <div class="col-6">
+        <input class="form-control" type="text" placeholder="Spd/Con" name="spdcon" value="{{{vessel.spdcon}}}">
+      </div>
+    </div>
+    <div class="row mb-2">
+      <div class="col-2">
+        <label class="col-form-label col-form-label-lg" for="place">place:
+        </label>
+      </div>
+      <div class="col-6">
+        <input class="form-control" type="text" placeholder="place" name="place" value="{{{vessel.place}}}">
+      </div>
+    </div>
+    {{!-- date --}}
+    <div class="row mb-5">
+      <div class="col-2">
+        <label class="col-form-label col-form-label-lg" for="opendate">OpenDate:</label>
+      </div>
+      <div class="input-group date col-6" id="datetimepicker1">
+        <input class="form-control" type="date" placeholder="opendate" name="opendate" value="{{{vessel.opendate}}}">
+        <span class="input-group-addon">
+          <span class="glyphicon glyphicon-calendar"></span>
+        </span>
+      </div>
+
+    </div>
+    {{!-- edit btn --}}
+    <div class="row form-group">
+      <button class="btn btn-secondary" type="submit">儲存</button>
+    </div>
+  </form>
+</div>
+
+
+{{!-- for datepicker --}}
+<script type="text/javascript">
+  $(function () {
+    $('#datetimepicker1').datetimepicker();
+  });
+</script>

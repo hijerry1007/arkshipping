@@ -4,11 +4,11 @@ const db = require('../models')
 const Vessel = db.Vessel
 
 
-/* GET users listing. */
+/* GET 新增船舶 */
 router.get('/postVessel', function (req, res, next) {
   res.render('postVessel');
 });
-
+/*post 新增船舶*/
 router.post('/postVessel', function (req, res, next) {
   //check IMONumber
   Vessel.findOne({
@@ -41,9 +41,39 @@ router.post('/postVessel', function (req, res, next) {
   })
 });
 
-router.get('/edit/:IMONumber', function (req, res, next) {
-  const IMONumber = req.params.IMONumber
-  res.render('editVessel', { IMONumber });
+// get 編輯position
+router.get('/edit/positionlist/:id', function (req, res, next) {
+  const vesselId = Number(req.params.id)
+  Vessel.findByPk(vesselId).then(vessel => {
+    res.render('editVslPosition', { vessel });
+  })
+})
+
+// post 編輯position
+router.post('/edit/positionlist/:id', function (req, res, next) {
+  const vesselId = Number(req.params.id)
+  Vessel.findByPk(vesselId).then(vessel => {
+    vessel.update({
+      ...vessel,
+      name: req.body.name,
+      IMONumber: req.body.IMONumber,
+      blt: req.body.blt,
+      type: req.body.type,
+      teu: req.body.teu,
+      homo: req.body.homo,
+      reefer: req.body.reefer,
+      dwt: req.body.dwt,
+      draft: req.body.draft,
+      gear: req.body.gear,
+      loa: req.body.loa,
+      beam: req.body.beam,
+      spdcon: req.body.spdcon,
+      place: req.body.place,
+      opendate: req.body.opendate
+    }).then(vessel => {
+      res.redirect(`/vessels/${vesselId}`);
+    })
+  })
 })
 
 router.get('/post/fixtures/:IMONumber', function (req, res, next) {
@@ -53,6 +83,7 @@ router.get('/post/fixtures/:IMONumber', function (req, res, next) {
 
 router.get('/edit/fixtures/:IMONumber', function (req, res, next) {
   const IMONumber = req.params.IMONumber
+
   res.render('editFixtures', { IMONumber });
 })
 
