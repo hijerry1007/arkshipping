@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 const db = require('../models')
 const Vessel = db.Vessel
-const pageLimit = 10
+const pageLimit = 20
 const Op = require('sequelize').Op
 
 
