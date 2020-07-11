@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 const db = require('../models')
 const Vessel = db.Vessel
+const Charterer = db.Charterer
 
 
 /* GET 新增船舶 */
@@ -76,9 +77,22 @@ router.post('/edit/positionlist/:id', function (req, res, next) {
   })
 })
 
-router.get('/post/fixtures/:IMONumber', function (req, res, next) {
-  const IMONumber = req.params.IMONumber
-  res.render('addFixtures', { IMONumber });
+
+//get 新增fixture
+router.get('/post/fixtures/:id', function (req, res, next) {
+  const vesselId = Number(req.params.id)
+  Vessel.findByPk(vesselId).then(vessel => {
+    vessel = vessel.toJSON()
+    Charterer.findAll({ raw: true, nest: true }).then(charterers => {
+      res.render('addFixtures', { charterers, vessel });
+    })
+
+  })
+})
+
+//post 新增fixture
+router.post('/post/fixtures', function (req, res, next) {
+  console.log(req.body)
 })
 
 router.get('/edit/fixtures/:IMONumber', function (req, res, next) {
