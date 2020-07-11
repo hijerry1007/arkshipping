@@ -5,7 +5,6 @@
 {{#each data}}
 <script type="text/javascript">
   timeSheetData.push([`{{this.begDate}}`, `{{this.endDate}}`, `{{this.charterer}}`, `{{this.color}}`])
-  console.log(timeSheetData)
 </script>
 {{/each}}
 
@@ -14,7 +13,7 @@
   <div class="vessel-nav-box">
     <a class="btn btn-primary mt-3" href="/admin/edit/positionlist/{{{vessel.id}}}">編輯 Position</a>
     <a class="btn btn-primary mt-3" href="/admin/post/fixtures/{{{vessel.id}}}">新增 Fixture</a>
-    <a class="btn btn-primary mt-3" href="/admin/edit/fixtures/{{{vessel.IMONumber}}}">編輯 Fixture</a>
+    <a class="btn btn-primary mt-3" href="/admin/edit/fixtures/{{{vessel.id}}}">編輯 Fixture</a>
   </div>
   <div class="vessel-box container mt-3">
     <div class="row">

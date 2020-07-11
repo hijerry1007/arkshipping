@@ -1,0 +1,15 @@
+<div class="container">
+  <h4 class="mb-5">Vessel: MV {{vesselName}}</h4>
+  {{#each fixtures}}
+  <div class="row mb-4">
+    <div class="col-4">
+      <h5>Charterer: {{this.charterer}}</h5>
+    </div>
+    <div class="col-4">
+      <h5>Hire: {{this.hire}}</h5>
+    </div>
+    <div class="col-4">
+      <a class="btn btn-primary" href="/admin/edit/fixtures/{{this.id}}">編輯Fixture</a> </div>
+  </div>
+  {{/each}}
+</div>

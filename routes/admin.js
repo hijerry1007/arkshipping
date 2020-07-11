@@ -106,11 +106,23 @@ router.post('/post/fixtures', function (req, res, next) {
   })
 })
 
-router.get('/edit/fixtures/:IMONumber', function (req, res, next) {
-  const IMONumber = req.params.IMONumber
+//get vessel fixtures
+router.get('/edit/fixtures/:id', function (req, res, next) {
+  const vesselId = Number(req.params.id)
+  Fixture.findAll({ raw: true, nest: true, where: { vesselId: vesselId }, include: [Charterer, Vessel] }).then(fixtures => {
 
-  res.render('editFixtures', { IMONumber });
+    vesselName = fixtures[0].Vessel.name
+    fixtures = fixtures.map(fixture => ({
+      ...fixture,
+      charterer: fixture.Charterer.name,
+    }))
+    res.render('vesselFixtures', { fixtures, vesselName });
+  })
+
 })
+
+//get post fixture
+
 
 router.get('/post/charterer', function (req, res, next) {
   const charterer = 'YML'
