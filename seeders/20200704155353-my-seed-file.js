@@ -1,5 +1,7 @@
 'use strict';
-const vesselData = require('../public/data/vesselData.json')
+const vesselData = require('../public/data/vesselData.json');
+const { query } = require('express');
+
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
@@ -12,6 +14,20 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
+    queryInterface.bulkInsert('Charterers', [{
+      name: 'Ever Green',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    }, {
+      name: 'Wan Hai Lines',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    }, {
+      name: 'Yang Ming Lines',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    }], {})
+
     let seederData = []
     for (let i = 0; i < vesselData.data.length; i++) {
       vesselData.data[i].createdAt = new Date()
@@ -30,6 +46,7 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
+    queryInterface.bulkDelete('Charterers', null, {})
     return queryInterface.bulkDelete('Vessels', null, {})
 
   }
