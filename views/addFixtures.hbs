@@ -1,14 +1,14 @@
 <div class="container form-group mt-5">
   {{!-- {{> messages}} --}}
-  <form action="/post/fixtures" method="POST">
+  <form action="/admin/post/fixtures" method="POST">
     {{!-- title --}}
-    <div class="row mb-5">
+    <div class="row mb-5 form-group">
       <div class="col-2">
         <p>*為必填欄位</p>
       </div>
       <div class="col-6">
         <h3>MV {{vessel.name}} - 新增Fixture</h3>
-        <input hidden value="{{vessel.id}}" />
+        <input type="text" name="vesselId" hidden value="{{vessel.id}}" />
       </div>
     </div>
 
@@ -17,7 +17,7 @@
         <label class="col-form-label col-form-label-lg" for="charterers">Charterers: </label>
       </div>
       <div class="col-6">
-        <select class="form-control" id="charterers">
+        <select class="form-control" id="charterers" name="chartererId">
           <option disabled hidden style="display:none" value="" selected>請選擇租家或新增租家</option>
           {{#each charterers}}
           <option value="{{this.id}}">{{this.name}}</option>

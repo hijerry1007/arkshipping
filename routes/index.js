@@ -2,8 +2,11 @@ var express = require('express');
 var router = express.Router();
 const db = require('../models')
 const Vessel = db.Vessel
+const Charterer = db.Charterer
+const Fixture = db.Fixture
 const pageLimit = 20
 const Op = require('sequelize').Op
+
 
 
 /* GET home page. */
@@ -72,8 +75,6 @@ router.get('/positionlist', function (req, res, next) {
     const vessels = results.rows.map(r => ({
       ...r.dataValues,
     }))
-
-
     res.render('positionList', {
       vessels: vessels,
       page: page,
@@ -87,9 +88,42 @@ router.get('/positionlist', function (req, res, next) {
 router.get('/vessels/:id', function (req, res, next) {
   const vesselId = Number(req.params.id)
 
-  Vessel.findByPk(vesselId).then(vessel => {
-    res.render('vessel', { vessel });
+  return Vessel.findByPk(vesselId, {
+    include: [
+      { model: Fixture, include: [Charterer] }
+    ]
+  }).then(vessel => {
 
+    fixtures = vessel.toJSON().Fixtures.map(fixture => ({
+      ...fixture
+    }))
+
+    fixtures = fixtures.sort((a, b) => {
+      return Date.parse(b.minPeriod) - Date.parse(a.minPeriod)
+    }).map(fixture => ({
+      ...fixture,
+      begDate: `${fixture.minPeriod.slice(5, 7)}/${fixture.minPeriod.slice(0, 4)}`,
+      endDate: `${fixture.maxPeriod.slice(5, 7)}/${fixture.maxPeriod.slice(0, 4)}`
+    }))
+
+    const timeSheetColor = ['lorem', 'default', 'ipsum', 'dolor']
+    let data = []
+    const fixtureLength = fixtures.length
+    // let timeSheetData = []
+    for (let i = 0; i < fixtures.length; i++) {
+      let randomNumber = Math.floor(Math.random() * 4)
+      data.push({ begDate: `${fixtures[i].begDate}`, endDate: `${fixtures[i].endDate}`, charterer: `${fixtures[i].Charterer.name}`, color: timeSheetColor[randomNumber] })
+      // data.push(`${fixtures[i].endDate}`)
+      // data.push(`${fixtures[i].Charterer.name}`)
+      // data.push(timeSheetColor[randomNumber])
+      // timeSheetData.push(data)
+    }
+
+    // const timeSheet = {
+    //   timeSheetData: timeSheetData
+    // }
+    console.log(data)
+    res.render('vessel', { vessel: vessel.toJSON(), data });
   })
 })
 

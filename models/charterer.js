@@ -11,11 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Charterer.belongsToMany(models.Vessel, {
-        through: models.Fixture,
-        foreignKey: 'ChartererId',
-        as: 'CharteredVessels'
-      })
+      Charterer.hasMany(models.Fixture)
     }
   };
   Charterer.init({

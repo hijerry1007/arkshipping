@@ -3,6 +3,7 @@ var router = express.Router();
 const db = require('../models')
 const Vessel = db.Vessel
 const Charterer = db.Charterer
+const Fixture = db.Fixture
 
 
 /* GET 新增船舶 */
@@ -92,7 +93,17 @@ router.get('/post/fixtures/:id', function (req, res, next) {
 
 //post 新增fixture
 router.post('/post/fixtures', function (req, res, next) {
-  console.log(req.body)
+
+  Fixture.create({
+    ChartererId: req.body.chartererId,
+    VesselId: req.body.vesselId,
+    minPeriod: req.body.minPeriod,
+    maxPeriod: req.body.maxPeriod,
+    hire: req.body.hire
+  }).then(fixture => {
+    res.redirect(`/vessels/${req.body.vesselId}`)
+
+  })
 })
 
 router.get('/edit/fixtures/:IMONumber', function (req, res, next) {

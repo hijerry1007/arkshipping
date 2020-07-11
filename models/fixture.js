@@ -10,6 +10,8 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
+      Fixture.belongsTo(models.Vessel)
+      Fixture.belongsTo(models.Charterer)
       // define association here
     }
   };
