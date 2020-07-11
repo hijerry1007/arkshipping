@@ -108,21 +108,10 @@ router.get('/vessels/:id', function (req, res, next) {
 
     const timeSheetColor = ['lorem', 'default', 'ipsum', 'dolor']
     let data = []
-    const fixtureLength = fixtures.length
-    // let timeSheetData = []
     for (let i = 0; i < fixtures.length; i++) {
       let randomNumber = Math.floor(Math.random() * 4)
       data.push({ begDate: `${fixtures[i].begDate}`, endDate: `${fixtures[i].endDate}`, charterer: `${fixtures[i].Charterer.name}`, color: timeSheetColor[randomNumber] })
-      // data.push(`${fixtures[i].endDate}`)
-      // data.push(`${fixtures[i].Charterer.name}`)
-      // data.push(timeSheetColor[randomNumber])
-      // timeSheetData.push(data)
     }
-
-    // const timeSheet = {
-    //   timeSheetData: timeSheetData
-    // }
-    console.log(data)
     res.render('vessel', { vessel: vessel.toJSON(), data });
   })
 })
