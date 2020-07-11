@@ -11,6 +11,11 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Vessel.belongsToMany(models.Charterer, {
+        through: models.Fixture,
+        foreignKey: 'VesselId',
+        as: 'historyCharterer'
+      })
     }
   };
   Vessel.init({
