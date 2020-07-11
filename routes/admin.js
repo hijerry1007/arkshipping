@@ -107,7 +107,7 @@ router.post('/post/fixtures', function (req, res, next) {
 })
 
 //get vessel fixtures
-router.get('/edit/fixtures/:id', function (req, res, next) {
+router.get('/vessel/fixtures/:id', function (req, res, next) {
   const vesselId = Number(req.params.id)
   Fixture.findAll({ raw: true, nest: true, where: { vesselId: vesselId }, include: [Charterer, Vessel] }).then(fixtures => {
 
@@ -122,7 +122,18 @@ router.get('/edit/fixtures/:id', function (req, res, next) {
 })
 
 //get post fixture
-
+router.get('/edit/fixtures/:id', function (req, res, next) {
+  return Fixture.findByPk(req.params.id, { raw: true, nest: true, include: [Vessel] }).then(fixture => {
+    fixture = {
+      ...fixture,
+      vesselName: fixture.Vessel.name,
+      vesselId: fixture.Vessel.id
+    }
+    Charterer.findAll().then(charterers => {
+      res.render('editFixture', { fixture, charterers })
+    })
+  })
+})
 
 router.get('/post/charterer', function (req, res, next) {
   const charterer = 'YML'

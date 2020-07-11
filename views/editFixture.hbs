@@ -1,0 +1,79 @@
+<div class="container form-group mt-5">
+  {{!-- {{> messages}} --}}
+  <form action="/admin/edit/fixtures" method="POST">
+    {{!-- title --}}
+    <div class="row mb-5 form-group">
+      <div class="col-2">
+        <p>*為必填欄位</p>
+      </div>
+      <div class="col-6">
+        <h3>MV {{fixture.name}} - 新增Fixture</h3>
+        <input type="text" name="vesselId" hidden value="{{fixture.vesselId}}" />
+      </div>
+    </div>
+
+    <div class="row mb-2 form-group">
+      <div class="col-2">
+        <label class="col-form-label col-form-label-lg" for="charterers">Charterers: </label>
+      </div>
+      <div class="col-6">
+        <select class="form-control" id="charterers" name="chartererId">
+          <option disabled hidden style="display:none" value="" selected>請選擇租家或新增租家</option>
+          {{#each charterers}}
+          <option value="{{this.id}}">{{this.name}}</option>
+          {{/each}}
+        </select>
+      </div>
+      <div class="col-4">
+        <a class="btn btn-primary" href="/admin/post/charterer">新增 Charterer</a>
+      </div>
+    </div>
+
+    <div class="row mb-2">
+      <div class="col-2">
+        <label class="col-form-label col-form-label-lg" for="hire">Hire(USD):
+        </label>
+      </div>
+      <div class="col-6">
+        <input class="form-control" type="text" placeholder="Hire" name="hire" value="{{fixture.hire}}">
+      </div>
+    </div>
+    {{!-- minPeriod--}}
+    <div class="row mb-2">
+      <div class="col-2">
+        <label class="col-form-label col-form-label-lg" for="minPeriod">minPeriod:</label>
+      </div>
+      <div class="input-group date col-6" id="datetimepicker1">
+        <input class="form-control" type="date" placeholder="minPeriod" name="minPeriod" value="{{fixture.minPeriod}}">
+        <span class="input-group-addon">
+          <span class="glyphicon glyphicon-calendar"></span>
+        </span>
+      </div>
+    </div>
+    {{!-- maxPeriod --}}
+    <div class="row mb-5">
+      <div class="col-2">
+        <label class="col-form-label col-form-label-lg" for="maxPeriod">maxPeriod:</label>
+      </div>
+      <div class="input-group date col-6" id="datetimepicker1">
+        <input class="form-control" type="date" placeholder="maxPeriod" name="maxPeriod" value="{{fixture.maxPeriod}}">
+        <span class="input-group-addon">
+          <span class="glyphicon glyphicon-calendar"></span>
+        </span>
+      </div>
+    </div>
+    {{!-- edit btn --}}
+    <div class="row form-group">
+      <div class="col-2">
+        <button class="btn btn-secondary" type="submit">儲存變更</button>
+      </div>
+    </div>
+  </form>
+</div>
+
+{{!-- for datepicker --}}
+<script type="text/javascript">
+  $(function () {
+    $('#datetimepicker1').datetimepicker();
+  });
+</script>
