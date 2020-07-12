@@ -210,6 +210,7 @@ ol, ul {
   width: 850px;
 }
 
+
 .memberBox{
   display: flex;
   flex-direction: column;
@@ -331,4 +332,18 @@ tbody td:nth-child(14) {
 
 .vessel-box .row +.row {
   margin-top: 30px;
+}
+
+.chartererBox{
+  border-top: 3px solid #ff9b00 ;
+  background-color: rgb(238, 246, 248);
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.chartererData{
+  margin: 30px;
+  color: black;
+  font-size: 24px;
+  width: 200px;
 }

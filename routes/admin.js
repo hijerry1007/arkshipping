@@ -154,8 +154,11 @@ router.post('/edit/fixtures/:id', function (req, res, next) {
 })
 
 router.get('/post/charterer', function (req, res, next) {
-  const charterer = 'YML'
-  res.render('postCharterer', { charterer });
+  Charterer.findAll({ raw: true, nest: true }).then(charterers => {
+    res.render('postCharterer', { charterers });
+  })
 })
+
+
 
 module.exports = router;
