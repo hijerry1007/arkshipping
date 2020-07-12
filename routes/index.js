@@ -8,7 +8,6 @@ const pageLimit = 20
 const Op = require('sequelize').Op
 
 
-
 /* GET home page. */
 router.get('/', function (req, res, next) {
   res.render('index');
@@ -99,12 +98,16 @@ router.get('/vessels/:id', function (req, res, next) {
     }))
 
     fixtures = fixtures.sort((a, b) => {
-      return Date.parse(b.minPeriod) - Date.parse(a.minPeriod)
+      return Date.parse(a.minPeriod) - Date.parse(b.minPeriod)
     }).map(fixture => ({
       ...fixture,
       begDate: `${fixture.minPeriod.slice(5, 7)}/${fixture.minPeriod.slice(0, 4)}`,
       endDate: `${fixture.maxPeriod.slice(5, 7)}/${fixture.maxPeriod.slice(0, 4)}`
     }))
+
+    const latestFixture = {
+      ...fixtures[fixtures.length - 1],
+    }
 
     const timeSheetColor = ['lorem', 'default', 'ipsum', 'dolor']
     let data = []
@@ -112,7 +115,7 @@ router.get('/vessels/:id', function (req, res, next) {
       let randomNumber = Math.floor(Math.random() * 4)
       data.push({ begDate: `${fixtures[i].begDate}`, endDate: `${fixtures[i].endDate}`, charterer: `${fixtures[i].Charterer.name}`, color: timeSheetColor[randomNumber] })
     }
-    res.render('vessel', { vessel: vessel.toJSON(), data });
+    res.render('vessel', { vessel: vessel.toJSON(), data, latestFixture });
   })
 })
 
