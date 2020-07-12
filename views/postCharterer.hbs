@@ -23,7 +23,9 @@
       {{this.name}}
     </div>
     <div class="col-2">
-      <a class="btn btn-primary" href="#">刪除</a>
+      <form action="/admin/charterer/{{this.id}}?_method=DELETE" method="POST">
+        <button type="submit" class="btn btn-primary">刪除</button>
+      </form>
     </div>
   </div>
   {{/each }}
