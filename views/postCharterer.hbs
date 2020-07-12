@@ -14,12 +14,17 @@
       </div>
     </div>
   </form>
+</div>
 
-  <div class="chartererBox">
-    {{#each charterers}}
-    <div class="chartererData">
+<div class="container chartererBox">
+  {{#each charterers}}
+  <div class="row mb-2 ml-2 mt-2 chartererData">
+    <div class="col-10">
       {{this.name}}
     </div>
-    {{/each }}
+    <div class="col-2">
+      <a class="btn btn-primary" href="#">刪除</a>
+    </div>
   </div>
+  {{/each }}
 </div>

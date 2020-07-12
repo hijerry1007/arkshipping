@@ -337,13 +337,10 @@ tbody td:nth-child(14) {
 .chartererBox{
   border-top: 3px solid #ff9b00 ;
   background-color: rgb(238, 246, 248);
-  display: flex;
-  flex-flow: row wrap;
 }
 
 .chartererData{
-  margin: 30px;
-  color: black;
-  font-size: 24px;
-  width: 200px;
+  font-size: 20px;
+  border-bottom: 2px solid chocolate;
+  padding-bottom: 5px;
 }

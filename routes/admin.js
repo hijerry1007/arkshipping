@@ -159,6 +159,23 @@ router.get('/post/charterer', function (req, res, next) {
   })
 })
 
+router.post('/post/charterer', function (req, res, next) {
+  const newCharterer = req.body.charterer
+  Charterer.findOne({ where: { name: newCharterer } }).then(charterer => {
+    if (charterer) {
+      console.log('charterer already exits')
+      return res.redirect('/admin/post/charterer')
+    }
+
+    Charterer.create({
+      name: newCharterer
+    }).then(charterer => {
+      return res.redirect('/admin/post/charterer')
+    })
+
+  })
+})
+
 
 
 module.exports = router;
