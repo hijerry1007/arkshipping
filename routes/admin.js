@@ -135,6 +135,22 @@ router.get('/edit/fixtures/:id', function (req, res, next) {
   })
 })
 
+//post edit fixture
+router.post('/edit/fixtures/:id', function (req, res, next) {
+  Fixture.findByPk(req.params.id).then(fixture => {
+    console.log(req.body.chartererId)
+    fixture.update({
+      VesselId: req.body.vesselId,
+      ChartererId: req.body.chartererId,
+      hire: req.body.hire,
+      minPeriod: req.body.minPeriod,
+      maxPeriod: req.body.maxPeriod
+    }).then(fixture => {
+      res.redirect(`/admin/vessel/fixtures/${req.body.vesselId}`)
+    })
+  })
+})
+
 router.get('/post/charterer', function (req, res, next) {
   const charterer = 'YML'
   res.render('postCharterer', { charterer });
