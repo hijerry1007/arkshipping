@@ -1,19 +1,32 @@
-var createError = require('http-errors');
-var express = require('express');
+const express = require('express')
 const handlebars = require('express-handlebars')
 
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-const passport = require('./config/passport')
-const methodOverride = require('method-override')
+const bodyParser = require('body-parser')
 const flash = require('connect-flash')
 const session = require('express-session')
-// const exphbs = require('express-handlebars')
-var indexRouter = require('./routes/index');
-var adminRouter = require('./routes/admin');
+const methodOverride = require('method-override')
 
-var app = express();
+const app = express()
+const port = 3000
+
+
+const passport = require('./config/passport')
+
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(methodOverride('_method'))
+app.use('/upload', express.static(__dirname + '/upload'))
+app.use(bodyParser.json())
+
+app.engine('handlebars', handlebars({
+  defaultLayout: 'main',
+  helpers: require('./config/handlebars-helpers')
+}))
+app.set('view engine', 'handlebars')
+// const exphbs = require('express-handlebars')
+const indexRouter = require('./routes/index');
+const adminRouter = require('./routes/admin');
+
+
 
 // view engine setup
 
@@ -26,44 +39,41 @@ var app = express();
 //   defaultLayout: 'main',
 //   helpers: require('./config/handlebars-helpers')
 // }));
-app.engine('handlebars', handlebars({
-  defaultLayout: 'main',
-  helpers: require('./config/handlebars-helpers')
-}))
-app.set('view engine', 'handlebars')
 
 
-app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(methodOverride('_method'))
 app.use(session({
   secret: 'copy cat',
   resave: false,
   saveUninitialized: true
 }))
+app.use(flash())
+app.use(express.static('public'))
+
 app.use(passport.initialize())
 app.use(passport.session())
-app.use(flash())
+
+app.use((req, res, next) => {
+  res.locals.success_messages = req.flash('success_messages')
+  res.locals.error_messages = req.flash('error_messages')
+  res.locals.warning_msg = req.flash('warning_msg')
+  res.locals.user = req.user
+  next()
+})
 
 app.use('/', indexRouter);
 app.use('/admin', adminRouter);
-
-// catch 404 and forward to error handler
-app.use(function (req, res, next) {
-  next(createError(404));
-});
 
 app.use((req, res, next) => {
   res.locals.user = req.user
   res.locals.isAuthenticated = req.isAuthenticated()
   res.locals.success_msg = req.flash('success_messages')
   res.locals.error_msg = req.flash('error_messages')
-
   next()
 });
 
 
-module.exports = app;
+
+app.listen(process.env.PORT || port, () => console.log(`Example app listening on port ${port}!`))
+
+
+

@@ -11,6 +11,8 @@
 
 <div class="vesselData">
   <div class="vessel-nav-box">
+    {{> messages}}
+
     <a class="btn btn-primary mt-3" href="/admin/edit/positionlist/{{{vessel.id}}}">編輯 Position</a>
     <a class="btn btn-primary mt-3" href="/admin/post/fixtures/{{{vessel.id}}}">新增 Fixture</a>
     <a class="btn btn-primary mt-3" href="/admin/vessel/fixtures/{{{vessel.id}}}">瀏覽 Fixtures</a>

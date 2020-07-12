@@ -117,13 +117,16 @@ router.post('/post/fixtures', authenticated, function (req, res, next) {
 router.get('/vessel/fixtures/:id', authenticated, function (req, res, next) {
   const vesselId = Number(req.params.id)
   Fixture.findAll({ raw: true, nest: true, where: { vesselId: vesselId }, include: [Charterer, Vessel] }).then(fixtures => {
-
+    if (fixtures.length === 0) {
+      req.flash('error_messages', { error_messages: '目前沒有fixtures' })
+      return res.redirect(`/vessels/${vesselId}`)
+    }
     vesselName = fixtures[0].Vessel.name
     fixtures = fixtures.map(fixture => ({
       ...fixture,
       charterer: fixture.Charterer.name,
     }))
-    res.render('vesselFixtures', { fixtures, vesselName });
+    return res.render('vesselFixtures', { fixtures, vesselName });
   })
 
 })
