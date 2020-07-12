@@ -5,13 +5,20 @@ const Vessel = db.Vessel
 const Charterer = db.Charterer
 const Fixture = db.Fixture
 
+const authenticated = (req, res, next) => {
+  if (req.isAuthenticated()) {
+    return next()
+  }
+  req.flash('warning_msg', '請先登入才能使用')
+  res.redirect('/signin')
+}
 
 /* GET 新增船舶 */
-router.get('/postVessel', function (req, res, next) {
+router.get('/postVessel', authenticated, function (req, res, next) {
   res.render('postVessel');
 });
 /*post 新增船舶*/
-router.post('/postVessel', function (req, res, next) {
+router.post('/postVessel', authenticated, function (req, res, next) {
   //check IMONumber
   Vessel.findOne({
     where: { IMONumber: `${req.body.IMONumber}` }
@@ -44,7 +51,7 @@ router.post('/postVessel', function (req, res, next) {
 });
 
 // get 編輯position
-router.get('/edit/positionlist/:id', function (req, res, next) {
+router.get('/edit/positionlist/:id', authenticated, function (req, res, next) {
   const vesselId = Number(req.params.id)
   Vessel.findByPk(vesselId).then(vessel => {
     res.render('editVslPosition', { vessel });
@@ -52,7 +59,7 @@ router.get('/edit/positionlist/:id', function (req, res, next) {
 })
 
 // post 編輯position
-router.put('/edit/positionlist/:id', function (req, res, next) {
+router.put('/edit/positionlist/:id', authenticated, function (req, res, next) {
   const vesselId = Number(req.params.id)
   Vessel.findByPk(vesselId).then(vessel => {
     vessel.update({
@@ -80,7 +87,7 @@ router.put('/edit/positionlist/:id', function (req, res, next) {
 
 
 //get 新增fixture
-router.get('/post/fixtures/:id', function (req, res, next) {
+router.get('/post/fixtures/:id', authenticated, function (req, res, next) {
   const vesselId = Number(req.params.id)
   Vessel.findByPk(vesselId).then(vessel => {
     vessel = vessel.toJSON()
@@ -92,7 +99,7 @@ router.get('/post/fixtures/:id', function (req, res, next) {
 })
 
 //post 新增fixture
-router.post('/post/fixtures', function (req, res, next) {
+router.post('/post/fixtures', authenticated, function (req, res, next) {
 
   Fixture.create({
     ChartererId: req.body.chartererId,
@@ -107,7 +114,7 @@ router.post('/post/fixtures', function (req, res, next) {
 })
 
 //get vessel fixtures
-router.get('/vessel/fixtures/:id', function (req, res, next) {
+router.get('/vessel/fixtures/:id', authenticated, function (req, res, next) {
   const vesselId = Number(req.params.id)
   Fixture.findAll({ raw: true, nest: true, where: { vesselId: vesselId }, include: [Charterer, Vessel] }).then(fixtures => {
 
@@ -122,7 +129,7 @@ router.get('/vessel/fixtures/:id', function (req, res, next) {
 })
 
 //get post fixture
-router.get('/edit/fixtures/:id', function (req, res, next) {
+router.get('/edit/fixtures/:id', authenticated, function (req, res, next) {
   return Fixture.findByPk(req.params.id, { raw: true, nest: true, include: [Vessel, Charterer] }).then(fixture => {
     fixture = {
       ...fixture,
@@ -138,7 +145,7 @@ router.get('/edit/fixtures/:id', function (req, res, next) {
 })
 
 //post edit fixture
-router.put('/edit/fixtures/:id', function (req, res, next) {
+router.put('/edit/fixtures/:id', authenticated, function (req, res, next) {
   Fixture.findByPk(req.params.id).then(fixture => {
     console.log(req.body.chartererId)
     fixture.update({
@@ -154,14 +161,14 @@ router.put('/edit/fixtures/:id', function (req, res, next) {
 })
 
 //get post charterer
-router.get('/post/charterer', function (req, res, next) {
+router.get('/post/charterer', authenticated, function (req, res, next) {
   Charterer.findAll({ raw: true, nest: true }).then(charterers => {
     res.render('postCharterer', { charterers });
   })
 })
 
 //post charterer
-router.post('/post/charterer', function (req, res, next) {
+router.post('/post/charterer', authenticated, function (req, res, next) {
   const newCharterer = req.body.charterer
   Charterer.findOne({ where: { name: newCharterer } }).then(charterer => {
     if (charterer) {
@@ -179,7 +186,7 @@ router.post('/post/charterer', function (req, res, next) {
 })
 
 //delete charterer
-router.delete('/charterers/:id', function (req, res, next) {
+router.delete('/charterers/:id', authenticated, function (req, res, next) {
 
   return Charterer.findByPk(req.params.id).then(charterer => {
     charterer.destroy().then(charterer => {
@@ -190,7 +197,7 @@ router.delete('/charterers/:id', function (req, res, next) {
 })
 
 //delete fixtures
-router.delete('/fixtures/:id', function (req, res, next) {
+router.delete('/fixtures/:id', authenticated, function (req, res, next) {
 
   return Fixture.findByPk(req.params.id).then(fixture => {
     fixture.destroy().then(fixture => {

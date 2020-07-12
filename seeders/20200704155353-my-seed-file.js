@@ -1,5 +1,7 @@
 'use strict';
 const vesselData = require('../public/data/vesselData.json');
+const bcrypt = require('bcryptjs')
+
 const { query } = require('express');
 
 
@@ -17,7 +19,7 @@ module.exports = {
     queryInterface.bulkInsert('Users', [{
       name: 'ARK',
       email: 'ark@arkshipping.com.tw',
-      password: 'arkshipping11',
+      password: bcrypt.hashSync('arkshipping11', bcrypt.genSaltSync(10), null),
       createdAt: new Date(),
       updatedAt: new Date()
     }], {})

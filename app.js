@@ -1,21 +1,37 @@
 var createError = require('http-errors');
 var express = require('express');
+const handlebars = require('express-handlebars')
+
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-const flash = require('connect-flash')
+const passport = require('./config/passport')
 const methodOverride = require('method-override')
+const flash = require('connect-flash')
 const session = require('express-session')
-var hbs = require('hbs')
-
+// const exphbs = require('express-handlebars')
 var indexRouter = require('./routes/index');
 var adminRouter = require('./routes/admin');
 
 var app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'hbs');
+
+// app.set('view engine', 'hbs');
+
+// app.set('views', path.join(__dirname, 'views'));
+// app.set('view engine', 'hbs');
+// app.engine('.hbs', exphbs({
+//   extname: '.hbs',
+//   defaultLayout: 'main',
+//   helpers: require('./config/handlebars-helpers')
+// }));
+app.engine('handlebars', handlebars({
+  defaultLayout: 'main',
+  helpers: require('./config/handlebars-helpers')
+}))
+app.set('view engine', 'handlebars')
+
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -28,6 +44,9 @@ app.use(session({
   resave: false,
   saveUninitialized: true
 }))
+app.use(passport.initialize())
+app.use(passport.session())
+app.use(flash())
 
 app.use('/', indexRouter);
 app.use('/admin', adminRouter);
@@ -37,22 +56,14 @@ app.use(function (req, res, next) {
   next(createError(404));
 });
 
-// error handler
-app.use(function (err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+app.use((req, res, next) => {
+  res.locals.user = req.user
+  res.locals.isAuthenticated = req.isAuthenticated()
+  res.locals.success_msg = req.flash('success_messages')
+  res.locals.error_msg = req.flash('error_messages')
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
+  next()
 });
 
-hbs.registerHelper('ifCond', function (a, b, options) {
-  if (a === b) {
-    return options.fn(this)
-  }
-  return options.inverse(this)
-})
 
 module.exports = app;

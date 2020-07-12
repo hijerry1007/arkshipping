@@ -21,12 +21,20 @@
         <div class="row row-up">
           <div id="navbarColor03">
             <ul class="navbar-nav mr-auto">
+
+              {{#if user}}
               <li class="nav-item">
                 <a class="nav-link" href="/positionlist">Position List|</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="/admin/postVessel">新增船舶 |</a>
               </li>
+              {{else}}
+              <li class="nav-item">
+                <a class="nav-link" href="/signin">登入後台 |</a>
+              </li>
+              {{/if}}
+
               <li class="nav-item">
                 <a class="nav-link" href="#">English</a>
               </li>
@@ -72,6 +80,8 @@
     </div>
 
   </nav>
+  {{> messages}}
+
   {{{body}}}
 
   <footer class="footer">

@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+const passport = require('../config/passport')
 const db = require('../models')
 const Vessel = db.Vessel
 const Charterer = db.Charterer
@@ -8,10 +9,29 @@ const pageLimit = 20
 const Op = require('sequelize').Op
 
 
+const authenticated = (req, res, next) => {
+  if (req.isAuthenticated()) {
+    return next()
+  }
+  req.flash('warning_msg', '請先登入才能使用')
+  res.redirect('/signin')
+}
+
 /* GET home page. */
 router.get('/', function (req, res, next) {
   res.render('index');
 });
+
+router.get('/signin', function (req, res, next) {
+  res.render('signIn');
+})
+
+router.post('/signin', passport.authenticate('local', {
+  failureRedirect: '/signin', failureFlash: true
+}), function (req, res, next) {
+  req.flash('success_messages', '成功登入！')
+  res.redirect('/positionlist')
+})
 
 router.get('/introduction', function (req, res, next) {
   res.render('introduction');
@@ -29,7 +49,8 @@ router.get('/team', function (req, res, next) {
   res.render('team');
 })
 
-router.get('/positionlist', function (req, res, next) {
+router.get('/positionlist', authenticated, function (req, res, next) {
+
 
   let offset = 0;
   if (req.query.page) {
@@ -84,7 +105,7 @@ router.get('/positionlist', function (req, res, next) {
   })
 })
 
-router.get('/vessels/:id', function (req, res, next) {
+router.get('/vessels/:id', authenticated, function (req, res, next) {
   const vesselId = Number(req.params.id)
 
   return Vessel.findByPk(vesselId, {
