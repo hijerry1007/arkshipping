@@ -14,6 +14,14 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
+    queryInterface.bulkInsert('Users', [{
+      name: 'ARK',
+      email: 'ark@arkshipping.com.tw',
+      password: 'arkshipping11',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    }], {})
+
     queryInterface.bulkInsert('Charterers', [{
       name: 'Ever Green',
       createdAt: new Date(),
@@ -46,6 +54,7 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
+    queryInterface.bulkDelete('Users', null, {})
     queryInterface.bulkDelete('Charterers', null, {})
     return queryInterface.bulkDelete('Vessels', null, {})
 
