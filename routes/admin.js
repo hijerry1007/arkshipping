@@ -123,11 +123,13 @@ router.get('/vessel/fixtures/:id', function (req, res, next) {
 
 //get post fixture
 router.get('/edit/fixtures/:id', function (req, res, next) {
-  return Fixture.findByPk(req.params.id, { raw: true, nest: true, include: [Vessel] }).then(fixture => {
+  return Fixture.findByPk(req.params.id, { raw: true, nest: true, include: [Vessel, Charterer] }).then(fixture => {
     fixture = {
       ...fixture,
       vesselName: fixture.Vessel.name,
-      vesselId: fixture.Vessel.id
+      vesselId: fixture.Vessel.id,
+      chartererId: fixture.Charterer.id,
+      chartererName: fixture.Charterer.name
     }
     Charterer.findAll().then(charterers => {
       res.render('editFixture', { fixture, charterers })

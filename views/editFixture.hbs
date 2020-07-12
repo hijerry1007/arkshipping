@@ -18,7 +18,7 @@
       </div>
       <div class="col-6">
         <select class="form-control" id="charterers" name="chartererId">
-          <option disabled hidden style="display:none" value="" selected>請選擇租家或新增租家</option>
+          <option style="display:none" value="{{fixture.chartererId}}" selected>{{fixture.chartererName}}</option>
           {{#each charterers}}
           <option value="{{this.id}}">{{this.name}}</option>
           {{/each}}
