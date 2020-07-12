@@ -179,11 +179,22 @@ router.post('/post/charterer', function (req, res, next) {
 })
 
 //delete charterer
-router.delete('/charterer/:id', function (req, res, next) {
+router.delete('/charterers/:id', function (req, res, next) {
 
   return Charterer.findByPk(req.params.id).then(charterer => {
     charterer.destroy().then(charterer => {
       res.redirect('/admin/post/charterer')
+    })
+  })
+
+})
+
+//delete fixtures
+router.delete('/fixtures/:id', function (req, res, next) {
+
+  return Fixture.findByPk(req.params.id).then(fixture => {
+    fixture.destroy().then(fixture => {
+      res.redirect('back')
     })
   })
 

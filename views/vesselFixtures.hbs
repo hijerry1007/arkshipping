@@ -1,15 +1,21 @@
 <div class="container">
   <h4 class="mb-5">Vessel: MV {{vesselName}}</h4>
   {{#each fixtures}}
-  <div class="row mb-4">
-    <div class="col-4">
+  <div class="row mb-4 chartererData">
+    <div class="col">
       <h5>Charterer: {{this.charterer}}</h5>
     </div>
-    <div class="col-4">
+    <div class="col">
       <h5>Hire: {{this.hire}}</h5>
     </div>
-    <div class="col-4">
-      <a class="btn btn-primary" href="/admin/edit/fixtures/{{this.id}}">編輯Fixture</a> </div>
+    <div class="col-2">
+      <a class="btn btn-primary" href="/admin/edit/fixtures/{{this.id}}">編輯Fixture</a>
+    </div>
+    <div class="col-2">
+      <form action="/admin/fixtures/{{this.id}}?_method=DELETE" method="POST">
+        <button type="submit" class="btn btn-primary">刪除</button>
+      </form>
+    </div>
   </div>
   {{/each}}
 </div>
