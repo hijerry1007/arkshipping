@@ -54,7 +54,7 @@ router.post('/postVessel', authenticated, function (req, res, next) {
 router.get('/edit/positionlist/:id', authenticated, function (req, res, next) {
   const vesselId = Number(req.params.id)
   Vessel.findByPk(vesselId).then(vessel => {
-    res.render('editVslPosition', { vessel });
+    return res.render('editVslPosition', { vessel: vessel.toJSON() });
   })
 })
 
