@@ -7,14 +7,17 @@
       <div class="intro-list-img">
         <img style="width: 70%;" src="/images/aa-removebg-preview.png" />
       </div>
-      <a href="#" style="text-decoration: none;" class="active mt-1 mb-1">公司歷史沿革</a>
-      <a href="#" style="text-decoration: none">公司經營概況</a>
+      <a href="/introduction/history" style="text-decoration: none;"
+        class="{{#ifCond sort 'history'}}active{{/ifCond}} mt-1 mb-1">公司歷史沿革</a>
+      <a href="/introduction/business" style="text-decoration: none"
+        class="{{#ifCond sort 'business'}}active{{/ifCond}} ">公司經營概況</a>
     </div>
 
-    {{!-- <div class="intro-bg ml-3 mt-3">
+    {{#ifCond sort 'history'}}
+    <div class="intro-bg ml-3 mt-3">
       <h4>公司歷史沿革</h4>
       <div class="intro-content mt-3">
-        <h6>
+        <p>
           ARK Shipping的歷史可追溯至1979年由C.C. Cheng程鎮鑒先生所創立的Rich Hope Marine；程先生亦曾與張榮發先生及陳查某先生合夥投資船舶成立Chan Frong海運。Rich
           Hope海運在1975-1985年間擁有4艘7,000~15,000 dwt的散裝船隊負責從事台灣-印尼-馬來西亞-泰國間的貨物運輸。 C.C.
           Cheng程先生在1970年之前任職於住友商社台灣副社長，專職代理來島造船廠接洽造船業務。Mr. Lanner Cheng程先生在當時則任職Rich Hope海運之經理，直至1993年將Rich
@@ -28,11 +31,12 @@
           Line，並在船廠直接完成交船。韓國的Heung-A Shipping也是ARK Shipping的主要客戶之一。另，ARK Shipping亦積極建立了與當時正快速擴張其事業版圖的韓國Halla
           Shipyard(現稱Hyundai
           SAMHO)相當密切的互動關係。
-        </h6>
+        <p>
 
       </div>
-    </div> --}}
-
+    </div>
+    {{/ifCond}}
+    {{#ifCond sort 'business'}}
     <div class="intro-bf ml-3 mt-3">
       <h4>公司經營概況</h4>
       <div class="intro-content mt-3">
@@ -53,5 +57,6 @@
 
       </div>
     </div>
+    {{/ifCond}}
   </div>
 </div>

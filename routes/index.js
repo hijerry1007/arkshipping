@@ -33,8 +33,9 @@ router.post('/signin', passport.authenticate('local', {
   res.redirect('/positionlist')
 })
 
-router.get('/introduction', function (req, res, next) {
-  res.render('introduction');
+router.get('/introduction/:page', function (req, res, next) {
+  const sort = req.params.page
+  res.render('introduction', { sort });
 })
 
 router.get('/services', function (req, res, next) {
