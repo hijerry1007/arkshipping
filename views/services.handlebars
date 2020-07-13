@@ -7,9 +7,11 @@
       <div class="intro-list-img">
         <img style="width: 70%;" src="/images/ss-removebg-preview.png" />
       </div>
-      <a href="#" style="text-decoration: none;" class="active mt-1 mb-1">貨櫃船</a>
-      <a href="#" style="text-decoration: none">散裝船</a>
-      <a href="#" style="text-decoration: none">油輪</a>
+      <a href="/services/container" style="text-decoration: none;"
+        class="{{#ifCond sort 'container'}}active{{/ifCond}} mt-1 mb-1">貨櫃船</a>
+      <a href="/services/bulker" style="text-decoration: none"
+        class="{{#ifCond sort 'bulker'}}active{{/ifCond}}">散裝船</a>
+      <a href="/services/tanker" style="text-decoration: none" class="{{#ifCond sort 'tanker'}}active{{/ifCond}}">油輪</a>
     </div>
 
     <div class="intro-bf ml-3 mt-3">
@@ -22,16 +24,23 @@
           <h6>船舶融資</h6>
           <h6>船舶管理</h6>
         </div>
+        {{#ifCond sort 'container'}}
         <p>
           亞德興業股份有限公司於西元1993年成立，至今有20年的歷史，主要營業項目為船舶買賣、船舶租賃、融資等業務，服務對象遍及國內外各大定期班輪航運公司。<br /><br />
           身為台灣貨櫃船的船舶租賃及買賣的先驅，具有高度視野，本公司業務重心除了二手船買賣、船舶租賃、新造船業務外，由於船舶航運業具高資本投入特性，故多數船東不論在新造船舶或購買二手船時均須作完整且長遠之評估，本公司憑藉十多年成功經驗也提供包括光船租賃、二手船售後回租、計畫性造租等各種船舶融資方式之專業諮詢，協助船東資金之靈活運用並期能提供客戶全面性的專業服務。
         </p>
-        {{!-- <p>
+        {{/ifCond}}
+        {{#ifCond sort 'bulker'}}
+        <p>
           本公司憑藉多年累積的純熟經驗及與國內外多家主要航商、造船企業、船務公司、各大原料供應商的良好關係，散裝船業務除了二手船買賣、船舶租賃、新造船業務的仲介與諮詢外，近年來由於船舶市場對各式融資業務的需求日益增加，也提供包括光船租賃、二手船售後回租、計畫性造租等各種船舶融資方式之專業諮詢，期能提供客戶全面性的專業服務，相信憑藉雄厚的業務基礎及關係網絡、完備的技術和人員配置，我們能確實的達成客戶的委託，可以為您提供最佳的船舶仲介、承接訂單、船舶營運及評估等一系列服務。
         </p>
+        {{/ifCond}}
+        {{#ifCond sort 'tanker'}}
         <p>
           VLCC在5年內的船價不斷高漲，回到超過過去每艘一億美金的水準。另包括VLCC在內，LR1/LR2及MR等三種船型的租金也節節高升，足見油輪市場漸漸回歸過去的榮景。本公司長期追蹤並與各大主要航商、供應商持續接洽與配合，相信憑藉多年累積的純熟經驗及持續不斷的業務網絡關係，能迅速把握客戶的要求和信息並確實的達成客戶的委託。本司將竭誠為您提供最佳的船舶仲介、承接訂單、船舶營運及評估等一系列服務。
-        </p> --}}
+        </p>
+        {{/ifCond}}
+
 
       </div>
     </div>

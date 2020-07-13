@@ -7,13 +7,24 @@
       <div class="intro-list-img">
         <img style="width: 70%;" src="/images/market-removebg-preview.png" />
       </div>
-      <a href="#" style="text-decoration: none;" class="active mt-1 mb-1">貨櫃船租金成交報導</a>
-      <a href="#" style="text-decoration: none">二手船成交報導</a>
-      <a href="#" style="text-decoration: none">造船市場報導</a>
+      <a href="/market/container" style="text-decoration: none;"
+        class="{{#ifCond sort 'container'}}active{{/ifCond}} mt-1 mb-1">貨櫃船租金成交報導</a>
+      <a href="/market/secondHand" style="text-decoration: none"
+        class="{{#ifCond sort 'secondHand'}}active{{/ifCond}}">二手船成交報導</a>
+      <a href="/market/newBuilding" style="text-decoration: none"
+        class="{{#ifCond sort 'newBuilding'}}active{{/ifCond}}">造船市場報導</a>
     </div>
 
     <div class="intro-bf ml-3 mt-3">
+      {{#ifCond sort 'container'}}
       <h4>Container Fixture Report</h4>
+      {{/ifCond}}
+      {{#ifCond sort 'secondHand'}}
+      <h4>Second Hand Sale Report</h4>
+      {{/ifCond}}
+      {{#ifCond sort 'newBuilding'}}
+      <h4>New Building Report</h4>
+      {{/ifCond}}
       <div class="marketListBox mt-1">
         {{!-- <ul class="marketList">
           <li>

@@ -33,17 +33,20 @@ router.post('/signin', passport.authenticate('local', {
   res.redirect('/positionlist')
 })
 
-router.get('/introduction/:page', function (req, res, next) {
-  const sort = req.params.page
+router.get('/introduction/:sort', function (req, res, next) {
+  const sort = req.params.sort
   res.render('introduction', { sort });
 })
 
-router.get('/services', function (req, res, next) {
-  res.render('services');
+router.get('/services/:sort', function (req, res, next) {
+  const sort = req.params.sort
+  res.render('services', { sort });
 })
 
-router.get('/market', function (req, res, next) {
-  res.render('market');
+router.get('/market/:sort', function (req, res, next) {
+  const sort = req.params.sort
+
+  res.render('market', { sort });
 })
 
 router.get('/team', function (req, res, next) {
