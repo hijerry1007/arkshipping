@@ -4,6 +4,8 @@ const db = require('../models')
 const Vessel = db.Vessel
 const Charterer = db.Charterer
 const Fixture = db.Fixture
+const Op = require('sequelize').Op
+
 
 const authenticated = (req, res, next) => {
   if (req.isAuthenticated()) {
@@ -20,11 +22,12 @@ router.get('/postVessel', authenticated, function (req, res, next) {
 /*post 新增船舶*/
 router.post('/postVessel', authenticated, function (req, res, next) {
   //check IMONumber
-  Vessel.findOne({
-    where: { IMONumber: `${req.body.IMONumber}` }
+  Vessel.findAll({
+    where: { [Op.or]: [{ IMONumber: req.body.IMONumber }, { name: req.body.name }] }
   }).then(vessel => {
     if (vessel) {
-      alert(`船舶已存在`)
+      req.flash('error_messages', { error_messages: '船舶重複!' })
+      res.redirect('/admin/postVessel')
     } else {
       Vessel.create({
         name: req.body.name,
